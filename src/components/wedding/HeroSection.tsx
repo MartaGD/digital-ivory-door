@@ -31,7 +31,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 1 }}
         >
-          Ana & Marc
+          Claudia & Arturo
         </motion.h1>
 
         <motion.div
@@ -48,7 +48,7 @@ const HeroSection = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.3, duration: 0.8 }}
         >
-          21 de Junio de 2025
+          19 de Septiembre de 2026
         </motion.p>
 
         <motion.p
@@ -57,7 +57,7 @@ const HeroSection = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.6, duration: 0.8 }}
         >
-          Barcelona, España
+          Sabadell, España
         </motion.p>
 
         <motion.div

@@ -15,7 +15,7 @@ const FooterSection = () => {
           className="font-display text-4xl md:text-6xl font-light mb-4"
           style={{ color: "hsl(var(--primary-foreground))" }}
         >
-          Ana & Marc
+          Claudia & Arturo
         </h2>
 
         <div className="w-24 h-px mx-auto my-6" style={{ background: "hsl(var(--wedding-gold))" }} />
@@ -24,7 +24,7 @@ const FooterSection = () => {
           className="font-display text-lg md:text-xl font-light italic mb-8"
           style={{ color: "hsl(var(--wedding-gold-light))" }}
         >
-          21 de Junio de 2025
+          19 de Septiembre de 2026
         </p>
 
         <p
