@@ -1,18 +1,8 @@
 import { motion } from "framer-motion";
-import weddingFloral from "@/assets/wedding-floral.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="wedding-section relative overflow-hidden min-h-screen">
-      {/* Background floral */}
-      <div
-        className="absolute inset-0 opacity-20"
-        style={{
-          backgroundImage: `url(${weddingFloral})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
+    <section className="wedding-section relative overflow-hidden min-h-screen" style={{ background: "hsl(var(--wedding-cream))" }}>
 
       <div className="relative z-10 text-center">
         <motion.p
@@ -51,14 +41,6 @@ const HeroSection = () => {
           19 de Septiembre de 2026
         </motion.p>
 
-        <motion.p
-          className="wedding-text mt-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.6, duration: 0.8 }}
-        >
-          Sabadell, España
-        </motion.p>
 
         <motion.div
           className="mt-12"

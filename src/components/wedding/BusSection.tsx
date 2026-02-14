@@ -1,0 +1,140 @@
+import { useState } from "react";
+import ScrollReveal from "./ScrollReveal";
+import { Bus } from "lucide-react";
+
+type BusOption = "ida" | "vuelta" | "ambos" | null;
+
+const BusSection = () => {
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [busOption, setBusOption] = useState<BusOption>(null);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!nombre || !apellido || !busOption) return;
+    console.log({ nombre, apellido, busOption });
+    setSubmitted(true);
+  };
+
+  return (
+    <section className="wedding-section" style={{ background: "hsl(var(--background))" }}>
+      <ScrollReveal className="w-full max-w-lg mx-auto text-center">
+        <p className="wedding-text mb-4">Transporte</p>
+        <h2 className="wedding-heading mb-2">Servicio de Bus</h2>
+        <div className="wedding-divider" />
+        <p
+          className="font-display text-lg font-light italic mb-8"
+          style={{ color: "hsl(var(--muted-foreground))" }}
+        >
+          Pondremos un autobús a vuestra disposición. Indicadnos si lo necesitaréis.
+        </p>
+
+        {!submitted ? (
+          <form onSubmit={handleSubmit} className="wedding-card text-left space-y-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label
+                  className="block text-xs tracking-widest uppercase mb-2"
+                  style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}
+                >
+                  Nombre
+                </label>
+                <input
+                  type="text"
+                  value={nombre}
+                  onChange={(e) => setNombre(e.target.value)}
+                  className="wedding-input"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  className="block text-xs tracking-widest uppercase mb-2"
+                  style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}
+                >
+                  Apellido
+                </label>
+                <input
+                  type="text"
+                  value={apellido}
+                  onChange={(e) => setApellido(e.target.value)}
+                  className="wedding-input"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                className="block text-xs tracking-widest uppercase mb-3"
+                style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}
+              >
+                ¿Qué trayecto necesitas?
+              </label>
+              <div className="space-y-3">
+                {([
+                  { value: "ida", label: "Solo ida" },
+                  { value: "vuelta", label: "Solo vuelta" },
+                  { value: "ambos", label: "Ida y vuelta" },
+                ] as const).map((option) => (
+                  <label
+                    key={option.value}
+                    className="flex items-center gap-3 cursor-pointer group"
+                  >
+                    <div
+                      className="w-5 h-5 rounded border flex items-center justify-center transition-colors"
+                      style={{
+                        borderColor: busOption === option.value
+                          ? "hsl(var(--wedding-gold))"
+                          : "hsl(var(--border))",
+                        background: busOption === option.value
+                          ? "hsl(var(--wedding-gold))"
+                          : "transparent",
+                      }}
+                      onClick={() =>
+                        setBusOption(busOption === option.value ? null : option.value)
+                      }
+                    >
+                      {busOption === option.value && (
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
+                          <path d="M20 6L9 17l-5-5" />
+                        </svg>
+                      )}
+                    </div>
+                    <span
+                      className="text-sm font-light"
+                      style={{ fontFamily: "var(--font-body)", color: "hsl(var(--foreground))" }}
+                      onClick={() =>
+                        setBusOption(busOption === option.value ? null : option.value)
+                      }
+                    >
+                      {option.label}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <button type="submit" className="wedding-button w-full">
+              <Bus className="w-4 h-4 mr-2 inline" />
+              Reservar plaza
+            </button>
+          </form>
+        ) : (
+          <div className="wedding-card text-center">
+            <Bus className="w-8 h-8 mx-auto mb-4" style={{ color: "hsl(var(--wedding-gold))" }} />
+            <p className="font-display text-xl font-medium mb-2" style={{ color: "hsl(var(--foreground))" }}>
+              ¡Plaza reservada!
+            </p>
+            <p className="text-sm font-light" style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}>
+              Hemos registrado tu reserva de bus. ¡Gracias!
+            </p>
+          </div>
+        )}
+      </ScrollReveal>
+    </section>
+  );
+};
+
+export default BusSection;
