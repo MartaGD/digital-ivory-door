@@ -3,7 +3,7 @@ import DoorAnimation from "@/components/wedding/DoorAnimation";
 import HeroSection from "@/components/wedding/HeroSection";
 import LocationSection from "@/components/wedding/LocationSection";
 import RSVPSection from "@/components/wedding/RSVPSection";
-import ContributionsSection from "@/components/wedding/ContributionsSection";
+
 import FooterSection from "@/components/wedding/FooterSection";
 
 const Index = () => {
@@ -18,7 +18,6 @@ const Index = () => {
           <HeroSection />
           <LocationSection />
           <RSVPSection />
-          <ContributionsSection />
           <FooterSection />
         </>
       )}
