@@ -5,57 +5,46 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 30 25% 96%;
-    --foreground: 30 10% 20%;
+:root {
+  /* FONS */
+  --background: 35 30% 95%;      /* crema wedding (#F4EFE6) */
+  --foreground: 25 20% 22%;      /* marró text (#3F2F2A) */
 
-    --card: 30 20% 98%;
-    --card-foreground: 30 10% 20%;
+  --card: 35 25% 97%;            /* targeta (#F9F6ED) */
+  --card-foreground: 25 20% 22%; /* text targeta (#3F2F2A) */
 
-    --popover: 30 20% 98%;
-    --popover-foreground: 30 10% 20%;
+  --popover: 35 25% 97%;         /* popover (#F9F6ED) */
+  --popover-foreground: 25 20% 22%; /* text popover (#3F2F2A) */
 
-    --primary: 30 15% 35%;
-    --primary-foreground: 30 25% 96%;
+  /* TEXT PRINCIPAL */
+  --primary: 95 30% 25%;         /* verd oliva boda (#3F5222) */
+  --primary-foreground: 35 30% 95%; /* text clar (#F4EFE6) */
 
-    --secondary: 150 15% 75%;
-    --secondary-foreground: 150 20% 25%;
+  --secondary: 35 25% 85%;       /* secció alterna (#E8E2D3) */
+  --secondary-foreground: 25 20% 25%; /* text altern (#3F322B) */
 
-    --muted: 30 15% 90%;
-    --muted-foreground: 30 10% 50%;
+  /* TEXT SUAU */
+  --muted: 35 20% 90%;           /* gris clar (#EEE9E0) */
+  --muted-foreground: 25 12% 45%; /* gris text (#8E867A) */
 
-    --accent: 10 40% 80%;
-    --accent-foreground: 10 30% 25%;
+  /* ACCENT */
+  --accent: 10 35% 75%;          /* coral suau (#D4A574) */
+  --accent-foreground: 25 20% 25%; /* text accent (#3F322B) */
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+  /* BORDES */
+  --border: 35 20% 85%;          /* gris bordes (#E5DBCE) */
+  --input: 35 20% 85%;           /* gris inputs (#E5DBCE) */
+  --ring: 95 30% 25%;            /* verd oliva intens (#3F5222) */
 
-    --border: 30 15% 85%;
-    --input: 30 15% 85%;
-    --ring: 30 15% 35%;
-
-    --radius: 0.5rem;
-
-    --wedding-gold: 38 60% 55%;
-    --wedding-gold-light: 38 50% 80%;
-    --wedding-blush: 10 35% 88%;
-    --wedding-sage: 150 20% 70%;
-    --wedding-sage-dark: 150 15% 40%;
-    --wedding-cream: 35 30% 95%;
-    --wedding-warm: 25 20% 30%;
-
-    --font-display: 'Cormorant Garamond', serif;
-    --font-body: 'Montserrat', sans-serif;
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+  /* WEDDING COLORS */
+  --wedding-gold: 38 45% 55%;    /* or (#C2A46D) */
+  --wedding-gold-light: 38 40% 80%; /* or clar (#E8DCC5) */
+  --wedding-blush: 10 35% 80%;   /* rosa suau (#E8C8C0) */
+  --wedding-sage: 95 20% 65%;    /* verd sàlvia (#A8BFA6) */
+  --wedding-sage-dark: 95 30% 25%; /* verd fosc (#3F5222) */
+  --wedding-cream: 35 30% 95%;   /* crema wedding (#F4EFE6) */
+  --wedding-warm: 25 20% 25%;    /* marró càlid (#3F322B) */
+}
 
   .dark {
     --background: 30 10% 10%;

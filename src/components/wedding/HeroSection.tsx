@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
+import backgroundImage from "../../assets/OldPaperFrame.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="wedding-section relative overflow-hidden min-h-screen" style={{ background: "hsl(var(--wedding-cream))" }}>
+    <section className="wedding-section relative overflow-hidden min-h-screen" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover", backgroundPosition: "center" }}>
 
       <div className="relative z-10 text-center">
         <motion.p

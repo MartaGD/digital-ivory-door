@@ -2,6 +2,7 @@ import { useState } from "react";
 import ScrollReveal from "./ScrollReveal";
 import { Bus } from "lucide-react";
 import { toast } from "sonner";
+import { motion } from "framer-motion";
 
 type BusOption = "ida" | "vuelta" | "ambos" | null;
 
@@ -161,6 +162,26 @@ const BusSection = () => {
             </p>
           </div>
         )}
+        <motion.div
+        className="mt-12"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 0.8 }}>
+
+          <motion.svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="hsl(var(--wedding-gold))"
+            strokeWidth="1"
+            className="mx-auto"
+            animate={{ y: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 2 }}>
+            <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+          </motion.svg>
+          
+        </motion.div>
       </ScrollReveal>
     </section>
   );
