@@ -7,11 +7,14 @@ import { CheckCircle } from "lucide-react";
 const dietaryOptions = [
   "Vegetariano",
   "Vegano",
-  "Otra/Alergias(lactosa, gluten, frutos secos, etc.)",
+  "Sin gluten",
+  "Sin lactosa",
+  "Alergia a frutos secos",
+  "Otra",
 ];
 
 // Reemplaza esto con la URL de tu Google Apps Script
-const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxSrIuBUNFX2N01z9TLt--YiipALv7zeK5Y29T_pousOerA63vkWQkkpIIhav6B0wGt/exec";
+const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw5Q2060IK4Dr2vFMlWLRnXlW_V_FiLVFady4KK44eDv93yHQGJE64SdadSichVIyiB/exec";
 
 const RSVPSection = () => {
   const [nombre, setNombre] = useState("");
@@ -22,23 +25,7 @@ const RSVPSection = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const toggleDieta = (d: string) => {
-    setDietas((prev) => {
-      if (prev.includes(d)) {
-        // Si ya está seleccionado, lo quitamos
-        return prev.filter((x) => x !== d);
-      } else {
-        // Si no está seleccionado, lo añadimos
-        // Si es Vegano y Vegetariano está seleccionado, lo quitamos
-        if (d === "Vegano" && prev.includes("Vegetariano")) {
-          return prev.filter((x) => x !== "Vegetariano").concat(d);
-        }
-        // Si es Vegetariano y Vegano está seleccionado, lo quitamos
-        if (d === "Vegetariano" && prev.includes("Vegano")) {
-          return prev.filter((x) => x !== "Vegano").concat(d);
-        }
-        return [...prev, d];
-      }
-    });
+    setDietas((prev) => (prev.includes(d) ? prev.filter((x) => x !== d) : [...prev, d]));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -51,10 +38,10 @@ const RSVPSection = () => {
     setIsLoading(true);
 
     try {
-      // Preparar los datos - transformar "Otra/Alergias(...)" a solo "Otra/Alergias"
-      const dietasText = dietas
-        .map((d) => d.includes("Otra/Alergias") ? "Otra/Alergias" : d)
-        .join(", ");
+      // Preparar los datos
+      const dietasText = dietas.includes("Otra") 
+        ? `${dietas.join(", ")} (${otraDieta})` 
+        : dietas.join(", ");
 
       // Enviar a Google Apps Script
       const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
@@ -64,7 +51,6 @@ const RSVPSection = () => {
           nombre: nombre,
           apellido: apellido,
           dietas: dietasText,
-          alergias: otraDieta,
         }),
       });
 
@@ -151,13 +137,13 @@ const RSVPSection = () => {
                 </label>
               ))}
             </div>
-            {dietas.some((d) => d.includes("Otra/Alergias")) && (
+            {dietas.includes("Otra") && (
               <input
                 type="text"
                 className="wedding-input mt-3"
                 value={otraDieta}
                 onChange={(e) => setOtraDieta(e.target.value)}
-                placeholder="Especifica tu alergia o dieta especial"
+                placeholder="Especifica tu dieta"
               />
             )}
           </div>
