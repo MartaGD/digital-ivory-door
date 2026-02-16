@@ -25,22 +25,26 @@ const BusSection = () => {
     setIsLoading(true);
 
     try {
-      // Enviar a Google Apps Script
       const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
         method: "POST",
-        mode: "no-cors",
         body: new URLSearchParams({
           formType: "bus",
-          nombre: nombre,
-          apellido: apellido,
+          nombre,
+          apellido,
           trayecto: busOption,
         }),
       });
 
+      const result = await response.json();
+      if (!result.success) {
+        toast.error(result.error || "Hubo un error. Intenta de nuevo.");
+        setIsLoading(false);
+        return;
+      }
+
       setSubmitted(true);
       toast.success("¡Plaza reservada con éxito!");
     } catch (error) {
-      console.error("Error al enviar:", error);
       toast.error("Hubo un error. Intenta de nuevo.");
     } finally {
       setIsLoading(false);

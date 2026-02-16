@@ -1,13 +1,13 @@
 import ScrollReveal from "./ScrollReveal";
-import { Users, Church, Wine, UtensilsCrossed, Music, PartyPopper, HeartHandshake } from "lucide-react";
+import { Users, Church, Wine, UtensilsCrossed, Music, PartyPopper, HeartHandshake, Blend, Moon } from "lucide-react";
 
 const events = [
   { time: "17:00h", title: "Llegada de invitados", icon: Users },
-  { time: "17:30h", title: "Ceremonia", icon: HeartHandshake },
+  { time: "17:30h", title: "Ceremonia", icon: Blend }, // HeartHandshake o Blend
   { time: "18:30h", title: "Aperitivo", icon: Wine },
   { time: "21:00h", title: "Banquete", icon: UtensilsCrossed },
   { time: "23:00h", title: "Baile", icon: Music },
-  { time: "02:00h", title: "Fin de Fiesta", icon: PartyPopper },
+  { time: "02:00h", title: "Fin de Fiesta", icon: Moon }, // PartyPopper o Bus o Moon
 ];
 
 const TimelineSection = () => {

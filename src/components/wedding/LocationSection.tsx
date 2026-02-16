@@ -20,7 +20,7 @@ const LocationSection = () => {
           </div>
           <div className="flex flex-col items-center gap-2">
             <MapPin className="w-5 h-5" style={{ color: "hsl(var(--wedding-gold))" }} />
-            <p className="wedding-text text-xs">Masia Castell Arnau</p>
+            <p className="wedding-text text-xs">Masia Castellarnau</p>
           </div>
         </div>
 

@@ -51,28 +51,31 @@ const RSVPSection = () => {
     setIsLoading(true);
 
     try {
-      // Preparar los datos - transformar "Otra/Alergias(...)" a solo "Otra/Alergias"
       const dietasText = dietas
         .map((d) => d.includes("Otra/Alergias") ? "Otra/Alergias" : d)
         .join(", ");
 
-      // Enviar a Google Apps Script
       const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
         method: "POST",
-        mode: "no-cors",
         body: new URLSearchParams({
-          nombre: nombre,
-          apellido: apellido,
+          nombre,
+          apellido,
           dietas: dietasText,
           alergias: otraDieta,
+          formType: "rsvp",
         }),
       });
 
-      // Con no-cors no podemos leer la respuesta, así que asumimos éxito si el fetch se completa
+      const result = await response.json();
+      if (!result.success) {
+        toast.error(result.error || "Hubo un error. Intenta de nuevo.");
+        setIsLoading(false);
+        return;
+      }
+
       setSubmitted(true);
       toast.success("¡Gracias por confirmar tu asistencia!");
     } catch (error) {
-      console.error("Error al enviar:", error);
       toast.error("Hubo un error. Intenta de nuevo.");
     } finally {
       setIsLoading(false);
