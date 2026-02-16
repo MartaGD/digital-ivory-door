@@ -1,24 +1,53 @@
 import { useState } from "react";
 import ScrollReveal from "./ScrollReveal";
 import { Bus } from "lucide-react";
+import { toast } from "sonner";
 
 type BusOption = "ida" | "vuelta" | "ambos" | null;
+
+const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw5Q2060IK4Dr2vFMlWLRnXlW_V_FiLVFady4KK44eDv93yHQGJE64SdadSichVIyiB/exec";
 
 const BusSection = () => {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [busOption, setBusOption] = useState<BusOption>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!nombre || !apellido || !busOption) return;
-    console.log({ nombre, apellido, busOption });
-    setSubmitted(true);
+    if (!nombre || !apellido || !busOption) {
+      toast.error("Por favor, completa todos los campos.");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // Enviar a Google Apps Script
+      const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: new URLSearchParams({
+          formType: "bus",
+          nombre: nombre,
+          apellido: apellido,
+          trayecto: busOption,
+        }),
+      });
+
+      setSubmitted(true);
+      toast.success("¡Plaza reservada con éxito!");
+    } catch (error) {
+      console.error("Error al enviar:", error);
+      toast.error("Hubo un error. Intenta de nuevo.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <section className="wedding-section" style={{ background: "hsl(var(--background))" }}>
+    <section className="wedding-section" style={{ background: "hsl(var(--card))" }}>
       <ScrollReveal className="w-full max-w-lg mx-auto text-center">
         <p className="wedding-text mb-4">Transporte</p>
         <h2 className="wedding-heading mb-2">Servicio de Bus</h2>
@@ -116,9 +145,9 @@ const BusSection = () => {
               </div>
             </div>
 
-            <button type="submit" className="wedding-button w-full">
+            <button type="submit" className="wedding-button w-full" disabled={isLoading}>
               <Bus className="w-4 h-4 mr-2 inline" />
-              Reservar plaza
+              {isLoading ? "Reservando..." : "Reservar plaza"}
             </button>
           </form>
         ) : (

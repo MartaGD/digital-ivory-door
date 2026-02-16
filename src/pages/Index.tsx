@@ -5,6 +5,7 @@ import LocationSection from "@/components/wedding/LocationSection";
 import RSVPSection from "@/components/wedding/RSVPSection";
 import BusSection from "@/components/wedding/BusSection";
 import FooterSection from "@/components/wedding/FooterSection";
+import SpotifySection from "@/components/wedding/SpotifySection";
 
 const Index = () => {
   const [doorOpened, setDoorOpened] = useState(false);
@@ -19,6 +20,7 @@ const Index = () => {
           <LocationSection />
           <RSVPSection />
           <BusSection />
+          <SpotifySection />
           <FooterSection />
         </>
       )}

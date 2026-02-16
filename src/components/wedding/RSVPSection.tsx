@@ -11,25 +11,56 @@ const dietaryOptions = [
   "Otra",
 ];
 
+// Reemplaza esto con la URL de tu Google Apps Script
+const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw5Q2060IK4Dr2vFMlWLRnXlW_V_FiLVFady4KK44eDv93yHQGJE64SdadSichVIyiB/exec";
+
 const RSVPSection = () => {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [dietas, setDietas] = useState<string[]>([]);
   const [otraDieta, setOtraDieta] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const toggleDieta = (d: string) => {
     setDietas((prev) => (prev.includes(d) ? prev.filter((x) => x !== d) : [...prev, d]));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!nombre.trim() || !apellido.trim()) {
       toast.error("Por favor, completa nombre y apellido.");
       return;
     }
-    setSubmitted(true);
-    toast.success("¡Gracias por confirmar tu asistencia!");
+
+    setIsLoading(true);
+
+    try {
+      // Preparar los datos
+      const dietasText = dietas.includes("Otra") 
+        ? `${dietas.join(", ")} (${otraDieta})` 
+        : dietas.join(", ");
+
+      // Enviar a Google Apps Script
+      const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: new URLSearchParams({
+          nombre: nombre,
+          apellido: apellido,
+          dietas: dietasText,
+        }),
+      });
+
+      // Con no-cors no podemos leer la respuesta, así que asumimos éxito si el fetch se completa
+      setSubmitted(true);
+      toast.success("¡Gracias por confirmar tu asistencia!");
+    } catch (error) {
+      console.error("Error al enviar:", error);
+      toast.error("Hubo un error. Intenta de nuevo.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (submitted) {
@@ -124,8 +155,8 @@ const RSVPSection = () => {
             )}
           </div>
 
-          <button type="submit" className="wedding-button w-full">
-            Confirmar asistencia
+          <button type="submit" className="wedding-button w-full" disabled={isLoading}>
+            {isLoading ? "Enviando..." : "Confirmar asistencia"}
           </button>
         </form>
       </ScrollReveal>

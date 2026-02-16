@@ -25,7 +25,7 @@ const LocationSection = () => {
         </div>
 
         <p className="font-display text-lg md:text-xl font-light italic mb-8" style={{ color: "hsl(var(--muted-foreground))" }}>
-          Masia Castell Arnau, Sabadell
+          Masia Castellarnau, Sabadell
         </p>
 
         {/* Google Maps placeholder */}
@@ -33,6 +33,15 @@ const LocationSection = () => {
           className="w-full aspect-video rounded-lg overflow-hidden"
           style={{ border: "1px solid hsl(var(--wedding-gold-light))" }}
         >
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2985.4613346374626!2d2.0702543766158517!3d41.55925907127844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a495c1aac056c3%3A0x82df79f30cb95afc!2sMasia%20Castellarnau!5e0!3m2!1sca!2ses!4v1771254333491!5m2!1sca!2ses" 
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen 
+          loading="lazy" 
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Ubicación de la boda"/>
+
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2988.5!2d2.1078!3d41.5463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4960b47b7d9e7%3A0x7e7c2e1d6e4a8b0a!2sMasia%20Castell%20Arnau!5e0!3m2!1ses!2ses!4v1234567890"
             width="100%"
