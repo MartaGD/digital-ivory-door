@@ -152,36 +152,35 @@ const BusSection = () => {
             </button>
           </form>
         ) : (
-          <div className="wedding-card text-center">
-            <Bus className="w-8 h-8 mx-auto mb-4" style={{ color: "hsl(var(--wedding-gold))" }} />
-            <p className="font-display text-xl font-medium mb-2" style={{ color: "hsl(var(--foreground))" }}>
-              ¡Plaza reservada!
-            </p>
-            <p className="text-sm font-light" style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}>
-              Hemos registrado tu reserva de bus. ¡Gracias!
-            </p>
-          </div>
-        )}
-        <motion.div
-        className="mt-12"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 0.8 }}>
+          <><div className="wedding-card text-center">
+              <Bus className="w-8 h-8 mx-auto mb-4" style={{ color: "hsl(var(--wedding-gold))" }} />
+              <p className="font-display text-xl font-medium mb-2" style={{ color: "hsl(var(--foreground))" }}>
+                ¡Plaza reservada!
+              </p>
+              <p className="text-sm font-light" style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}>
+                Hemos registrado tu reserva de bus. ¡Gracias!
+              </p>
+            </div><motion.div
+              className="mt-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2, duration: 0.8 }}>
 
-          <motion.svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="hsl(var(--wedding-gold))"
-            strokeWidth="1"
-            className="mx-auto"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}>
-            <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
-          </motion.svg>
-          
-        </motion.div>
+                <motion.svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="hsl(var(--wedding-gold))"
+                  strokeWidth="1"
+                  className="mx-auto"
+                  animate={{ y: [0, 8, 0] }}
+                  transition={{ repeat: Infinity, duration: 2 }}>
+                  <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+                </motion.svg>
+
+              </motion.div></>
+        )}
       </ScrollReveal>
     </section>
   );

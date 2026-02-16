@@ -1,9 +1,9 @@
 import ScrollReveal from "./ScrollReveal";
-import { Users, Church, Wine, UtensilsCrossed, Music, PartyPopper } from "lucide-react";
+import { Users, Church, Wine, UtensilsCrossed, Music, PartyPopper, HeartHandshake } from "lucide-react";
 
 const events = [
   { time: "17:00h", title: "Llegada de invitados", icon: Users },
-  { time: "17:30h", title: "Ceremonia", icon: Church },
+  { time: "17:30h", title: "Ceremonia", icon: HeartHandshake },
   { time: "18:30h", title: "Aperitivo", icon: Wine },
   { time: "21:00h", title: "Banquete", icon: UtensilsCrossed },
   { time: "23:00h", title: "Baile", icon: Music },
@@ -49,7 +49,7 @@ const TimelineSection = () => {
                     <>
                       <div className="w-1/2 pr-14 text-right">
                         <span
-                          className="font-display text-xl md:text-2xl font-semibold"
+                          className="font-display text-xl md:text-2xl font-light italic"
                           style={{ color: "hsl(var(--foreground))" }}
                         >
                           {event.time}
@@ -57,7 +57,7 @@ const TimelineSection = () => {
                       </div>
                       <div className="w-1/2 pl-14 text-left">
                         <span
-                          className="font-display text-lg md:text-xl font-light italic"
+                          className="font-display text-lg md:text-xl font-semibold"
                           style={{ color: "hsl(var(--foreground))" }}
                         >
                           {event.title}
@@ -68,7 +68,7 @@ const TimelineSection = () => {
                     <>
                       <div className="w-1/2 pr-14 text-right">
                         <span
-                          className="font-display text-lg md:text-xl font-light italic"
+                          className="font-display text-lg md:text-xl font-semibold"
                           style={{ color: "hsl(var(--foreground))" }}
                         >
                           {event.title}
@@ -76,7 +76,7 @@ const TimelineSection = () => {
                       </div>
                       <div className="w-1/2 pl-14 text-left">
                         <span
-                          className="font-display text-xl md:text-2xl font-semibold"
+                          className="font-display text-xl md:text-2xl font-light italic"
                           style={{ color: "hsl(var(--foreground))" }}
                         >
                           {event.time}

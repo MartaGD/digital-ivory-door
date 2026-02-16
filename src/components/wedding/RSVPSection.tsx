@@ -2,6 +2,7 @@ import { useState } from "react";
 import ScrollReveal from "./ScrollReveal";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
+import { CheckCircle } from "lucide-react";
 
 const dietaryOptions = [
   "Vegetariano",
@@ -64,48 +65,19 @@ const RSVPSection = () => {
     }
   };
 
-  if (submitted) {
-    return (
-      <section className="wedding-section">
-        <ScrollReveal className="text-center">
-          <p className="wedding-text mb-4">Confirmado</p>
-          <h2 className="wedding-heading mb-2">¡Gracias!</h2>
-          <div className="wedding-divider" />
-          <p className="font-display text-xl font-light italic" style={{ color: "hsl(var(--muted-foreground))" }}>
-            {nombre} {apellido}, te esperamos con mucha ilusión.
-          </p>
-                  <motion.div
-        className="mt-12"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 0.8 }}>
-
-          <motion.svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="hsl(var(--wedding-gold))"
-            strokeWidth="1"
-            className="mx-auto"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}>
-            <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
-          </motion.svg>
-          
-        </motion.div>
-        </ScrollReveal>
-      </section>
-    );
-  }
-
   return (
     <section className="wedding-section">
-      <ScrollReveal className="w-full max-w-lg mx-auto text-center">
+      <ScrollReveal className="text-center">
         <p className="wedding-text mb-4">Confirma tu asistencia</p>
         <h2 className="wedding-heading mb-2">¿Nos acompañas?</h2>
         <div className="wedding-divider" />
+        <p
+          className="font-display text-lg font-light italic mb-8"
+          style={{ color: "hsl(var(--muted-foreground))" }}         >
+          Tu respuesta nos ayuda a preparar la celebración perfecta.
+        </p>
 
+      {!submitted ? (
         <form onSubmit={handleSubmit} className="wedding-card space-y-5 text-left">
           <div>
             <label className="wedding-text text-xs block mb-2">Nombre</label>
@@ -180,6 +152,36 @@ const RSVPSection = () => {
             {isLoading ? "Enviando..." : "Confirmar asistencia"}
           </button>
         </form>
+      ) : (
+          <><div className="wedding-card text-center">
+              <CheckCircle className="w-8 h-8 mx-auto mb-4" style={{ color: "hsl(var(--wedding-gold))" }} />
+              <p className="wedding-heading mb-2">¡Gracias!</p>
+              <div className="wedding-divider" />
+              <p className="font-display text-xl font-light italic" style={{ color: "hsl(var(--muted-foreground))" }}>
+                {nombre} {apellido}, te esperamos con mucha ilusión.
+              </p>
+            </div><motion.div
+              className="mt-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2, duration: 0.8 }}
+            >
+                <motion.svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="hsl(var(--wedding-gold))"
+                  strokeWidth="1"
+                  className="mx-auto"
+                  animate={{ y: [0, 8, 0] }}
+                  transition={{ repeat: Infinity, duration: 2 }}
+                >
+                  <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+                </motion.svg>
+              </motion.div></>
+        )}
+        
       </ScrollReveal>
     </section>
   );

@@ -27,7 +27,7 @@ const SpotifySection = () => {
           className="font-display text-lg font-light italic mb-8"
           style={{ color: "hsl(var(--muted-foreground))" }}
         >
-          LOREM IPSUM LOREM IPSUM
+        Cada canción cuenta: ¡sube la tuya y celebremos juntos!
         </p>
 
       </ScrollReveal>
