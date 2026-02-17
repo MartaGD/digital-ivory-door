@@ -34,7 +34,7 @@ const DoorAnimation = ({ onOpen }: DoorAnimationProps) => {
             transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
           >
             <div className="pr-1 md:pr-2 text-right">
-              <p className="font-display text-lg md:text-2xl font-light italic" style={{ color: "hsl(var(--wedding-gold))", paddingBottom: "150px" }}>
+              <p className="font-display text-lg md:text-2xl font-light italic" style={{ color: "hsl(var(--wedding-warm))", paddingBottom: "150px" }}>
               ¡Estas
               </p>
             </div>
@@ -52,7 +52,7 @@ const DoorAnimation = ({ onOpen }: DoorAnimationProps) => {
             transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
           >
             <div className="pl-1 md:pl-2 text-left">
-              <p className="font-display text-lg md:text-2xl font-light italic" style={{ color: "hsl(var(--wedding-gold))", paddingBottom: "150px" }}>
+              <p className="font-display text-lg md:text-2xl font-light italic" style={{ color: "hsl(var(--wedding-warm))", paddingBottom: "150px" }}>
               invitado!
               </p>
             </div>
