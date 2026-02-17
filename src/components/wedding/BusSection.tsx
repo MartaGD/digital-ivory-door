@@ -75,7 +75,7 @@ const BusSection = () => {
           style={{ color: "hsl(var(--muted-foreground))" }}
         >
           Pondremos un autobús a vuestra disposición.
-          </br>
+          <br></br>
           Indicadnos si lo necesitaréis.
         </p>
 
