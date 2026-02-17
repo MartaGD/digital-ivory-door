@@ -130,33 +130,23 @@ const BusSection = () => {
                   <label
                     key={option.value}
                     className="flex items-center gap-3 cursor-pointer group"
+                    style={{ userSelect: 'none' }}
                   >
-                    <div
-                      className="w-5 h-5 rounded border flex items-center justify-center transition-colors"
+                    <input
+                      type="radio"
+                      name="busOption"
+                      value={option.value}
+                      checked={busOption === option.value}
+                      onChange={() => setBusOption(option.value)}
+                      className="w-5 h-5 accent-[hsl(var(--wedding-gold))] border rounded transition-colors"
                       style={{
-                        borderColor: busOption === option.value
-                          ? "hsl(var(--wedding-gold))"
-                          : "hsl(var(--border))",
-                        background: busOption === option.value
-                          ? "hsl(var(--wedding-gold))"
-                          : "transparent",
+                        borderColor: "hsl(var(--wedding-gold))",
+                        background: "hsl(var(--wedding-gold))",
                       }}
-                      onClick={() =>
-                        setBusOption(busOption === option.value ? null : option.value)
-                      }
-                    >
-                      {busOption === option.value && (
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
-                          <path d="M20 6L9 17l-5-5" />
-                        </svg>
-                      )}
-                    </div>
+                    />
                     <span
                       className="text-s font-light"
                       style={{ fontFamily: "var(--font-body)", color: "hsl(var(--foreground))" }}
-                      onClick={() =>
-                        setBusOption(busOption === option.value ? null : option.value)
-                      }
                     >
                       {option.label}
                     </span>

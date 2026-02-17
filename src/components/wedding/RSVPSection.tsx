@@ -7,7 +7,7 @@ import { CheckCircle, Frown } from "lucide-react";
 const dietaryOptions = [
   "Vegetariano",
   "Vegano",
-  "Otra/Alergias(lactosa, gluten, frutos secos, etc.)",
+  "Otra/Alergias",
 ];
 
 // Reemplaza esto con la URL de tu Google Apps Script
@@ -138,29 +138,21 @@ const RSVPSection = () => {
                 <label
                   key={option}
                   className="flex items-center gap-2 cursor-pointer group"
+                  style={{ userSelect: 'none' }}
                 >
-                  <div
-                    className="w-4 h-4 rounded-sm border flex items-center justify-center transition-colors"
+                  <input
+                    type="checkbox"
+                    checked={dietas.includes(option)}
+                    onChange={() => toggleDieta(option)}
+                    className="w-4 h-4 accent-[hsl(var(--wedding-gold))] border rounded-sm transition-colors"
                     style={{
-                      borderColor: dietas.includes(option)
-                        ? "hsl(var(--wedding-gold))"
-                        : "hsl(var(--border))",
-                      background: dietas.includes(option)
-                        ? "hsl(var(--wedding-gold))"
-                        : "transparent",
+                      borderColor: "hsl(var(--wedding-gold))",
+                      background: "hsl(var(--wedding-gold))",
                     }}
-                    onClick={() => toggleDieta(option)}
-                  >
-                    {dietas.includes(option) && (
-                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                        <path d="M2 5l2 2 4-4" stroke="hsl(var(--primary-foreground))" strokeWidth="1.5" />
-                      </svg>
-                    )}
-                  </div>
+                  />
                   <span
                     className="text-s font-light"
                     style={{ fontFamily: "var(--font-body)", color: "hsl(var(--foreground))" }}
-                    onClick={() => toggleDieta(option)}
                   >
                     {option}
                   </span>
@@ -168,13 +160,16 @@ const RSVPSection = () => {
               ))}
             </div>
             {dietas.some((d) => d.includes("Otra/Alergias")) && (
-              <input
-                type="text"
-                className="wedding-input mt-3"
-                value={otraDieta}
-                onChange={(e) => setOtraDieta(e.target.value)}
-                placeholder="Especifica tu alergia o dieta especial"
-              />
+              <><span className="text-s font-light"
+                  style={{ fontFamily: "var(--font-body)", color: "hsl(var(--foreground))" }}>
+                   (lactosa, gluten, frutos secos, etc.)
+                  </span>
+                  <input
+                  type="text"
+                  className="wedding-input mt-3"
+                  value={otraDieta}
+                  onChange={(e) => setOtraDieta(e.target.value)}
+                  placeholder="Especifica tu alergia o dieta especial. " /></>
             )}
           </div>
 
