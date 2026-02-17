@@ -50,7 +50,7 @@ const ContributionItem = ({ icon, title, description, details }: ContributionIte
             className="overflow-hidden"
           >
             <div className="pt-4 mt-4" style={{ borderTop: "1px solid hsl(var(--border))" }}>
-              <p className="text-sm font-light leading-relaxed" style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}>
+              <p className="text-s font-light leading-relaxed" style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}>
                 {details}
               </p>
             </div>

@@ -102,7 +102,7 @@ const RSVPSection = () => {
         <h2 className="wedding-heading mb-2">¿Nos acompañas?</h2>
         <div className="wedding-divider" />
         <p
-          className="font-display text-lg font-light italic mb-8"
+          className="font-display text-xl font-light italic mb-8"
           style={{ color: "hsl(var(--muted-foreground))" }}         >
           Tu respuesta nos ayuda a preparar la celebración perfecta.
         </p>
@@ -110,7 +110,7 @@ const RSVPSection = () => {
       {!submitted ? (
         <form onSubmit={handleSubmit} className="wedding-card space-y-5 text-left">
           <div>
-            <label className="wedding-text text-xs block mb-2">Nombre*</label>
+            <label className="wedding-text text-s block mb-2">Nombre*</label>
             <input
               type="text"
               className="wedding-input"
@@ -121,7 +121,7 @@ const RSVPSection = () => {
           </div>
 
           <div>
-            <label className="wedding-text text-xs block mb-2">Apellido*</label>
+            <label className="wedding-text text-s block mb-2">Apellido*</label>
             <input
               type="text"
               className="wedding-input"
@@ -132,7 +132,7 @@ const RSVPSection = () => {
           </div>
 
           <div>
-            <label className="wedding-text text-xs block mb-3">Dietas especiales</label>
+            <label className="wedding-text text-s block mb-3">Dietas especiales</label>
             <div className="grid grid-cols-2 gap-3">
               {dietaryOptions.map((option) => (
                 <label
@@ -158,7 +158,7 @@ const RSVPSection = () => {
                     )}
                   </div>
                   <span
-                    className="text-sm font-light"
+                    className="text-s font-light"
                     style={{ fontFamily: "var(--font-body)", color: "hsl(var(--foreground))" }}
                     onClick={() => toggleDieta(option)}
                   >
@@ -194,7 +194,7 @@ const RSVPSection = () => {
               <p className="font-display text-xl font-medium mb-2" style={{ color: "hsl(var(--foreground))" }}>
                 ¡Ups!
               </p>
-              <p className="text-sm font-light" style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}>
+              <p className="text-s font-light" style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}>
                 {rsvpError}
               </p>
             </>

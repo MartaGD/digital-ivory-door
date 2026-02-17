@@ -5,7 +5,7 @@ const FooterSection = () => {
     <footer className="py-20 px-6 text-center" style={{ background: "hsl(var(--primary))" }}>
       <ScrollReveal>
         <p
-          className="text-xs tracking-widest uppercase mb-6"
+          className="text-s tracking-widest uppercase mb-6"
           style={{ fontFamily: "var(--font-body)", color: "hsl(var(--wedding-gold-light))" }}
         >
           Nos vemos pronto
@@ -21,14 +21,14 @@ const FooterSection = () => {
         <div className="w-24 h-px mx-auto my-6" style={{ background: "hsl(var(--wedding-gold))" }} />
 
         <p
-          className="font-display text-lg md:text-xl font-light italic mb-8"
+          className="font-display text-xl md:text-xl font-light italic mb-8"
           style={{ color: "hsl(var(--wedding-gold-light))" }}
         >
           19 de Septiembre de 2026
         </p>
 
         <p
-          className="text-sm font-light max-w-md mx-auto leading-relaxed"
+          className="text-s font-light max-w-md mx-auto leading-relaxed"
           style={{ fontFamily: "var(--font-body)", color: "hsl(var(--primary-foreground) / 0.7)" }}
         >
           Gracias por formar parte de este día tan especial. Vuestra presencia llenará de alegría uno de los momentos más bonitos de nuestras vidas.

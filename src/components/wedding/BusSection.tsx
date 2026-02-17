@@ -71,10 +71,12 @@ const BusSection = () => {
         <h2 className="wedding-heading mb-2">Servicio de Bus</h2>
         <div className="wedding-divider" />
         <p
-          className="font-display text-lg font-light italic mb-8"
+          className="font-display text-xl font-light italic mb-8"
           style={{ color: "hsl(var(--muted-foreground))" }}
         >
-          Pondremos un autobús a vuestra disposición. Indicadnos si lo necesitaréis.
+          Pondremos un autobús a vuestra disposición.
+          </br>
+          Indicadnos si lo necesitaréis.
         </p>
 
         {!submitted ? (
@@ -82,7 +84,7 @@ const BusSection = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label
-                  className="block text-xs tracking-widest uppercase mb-2"
+                  className="block text-s tracking-widest uppercase mb-2"
                   style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}
                 >
                   Nombre*
@@ -97,7 +99,7 @@ const BusSection = () => {
               </div>
               <div>
                 <label
-                  className="block text-xs tracking-widest uppercase mb-2"
+                  className="block text-s tracking-widest uppercase mb-2"
                   style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}
                 >
                   Apellido*
@@ -114,7 +116,7 @@ const BusSection = () => {
 
             <div>
               <label
-                className="block text-xs tracking-widest uppercase mb-3"
+                className="block text-s tracking-widest uppercase mb-3"
                 style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}
               >
                 ¿Qué trayecto necesitas?*
@@ -150,7 +152,7 @@ const BusSection = () => {
                       )}
                     </div>
                     <span
-                      className="text-sm font-light"
+                      className="text-s font-light"
                       style={{ fontFamily: "var(--font-body)", color: "hsl(var(--foreground))" }}
                       onClick={() =>
                         setBusOption(busOption === option.value ? null : option.value)
@@ -178,7 +180,7 @@ const BusSection = () => {
               <><Bus className="w-8 h-8 mx-auto mb-4" style={{ color: "hsl(var(--wedding-gold))" }} />
               <p className="font-display text-xl font-medium mb-2" style={{ color: "hsl(var(--foreground))" }}>
                   ¡Plaza reservada!
-                </p><p className="text-sm font-light" style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}>
+                </p><p className="text-s font-light" style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}>
                     Hemos registrado tu reserva de bus. ¡Gracias!
                   </p></>
               )}
@@ -186,7 +188,7 @@ const BusSection = () => {
                 <><Frown className="w-8 h-8 mx-auto mb-4" style={{ color: "hsl(var(--wedding-gold))" }} />
                 <p className="font-display text-xl font-medium mb-2" style={{ color: "hsl(var(--foreground))" }}>
                   ¡Ups!
-                </p><p className="text-sm font-light" style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}>
+                </p><p className="text-s font-light" style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}>
                     {busError}
                   </p></>
               )}

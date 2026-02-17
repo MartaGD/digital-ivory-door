@@ -57,7 +57,7 @@ const TimelineSection = () => {
                       </div>
                       <div className="w-1/2 pl-14 text-left">
                         <span
-                          className="font-display text-lg md:text-xl font-semibold"
+                          className="font-display text-xl md:text-xl font-semibold"
                           style={{ color: "hsl(var(--foreground))" }}
                         >
                           {event.title}
@@ -68,7 +68,7 @@ const TimelineSection = () => {
                     <>
                       <div className="w-1/2 pr-14 text-right">
                         <span
-                          className="font-display text-lg md:text-xl font-semibold"
+                          className="font-display text-xl md:text-xl font-semibold"
                           style={{ color: "hsl(var(--foreground))" }}
                         >
                           {event.title}

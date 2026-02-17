@@ -34,8 +34,8 @@ const DoorAnimation = ({ onOpen }: DoorAnimationProps) => {
             transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
           >
             <div className="pr-1 md:pr-2 text-right">
-              <p className="font-display text-lg md:text-2xl font-light italic" style={{ color: "hsl(var(--wedding-warm))", paddingBottom: "150px" }}>
-              ¡Estas
+              <p className="font-display text-xl md:text-2xl font-light italic" style={{ color: "hsl(var(--wedding-warm))", paddingBottom: "150px" }}>
+   
               </p>
             </div>
           </motion.div>
@@ -52,8 +52,8 @@ const DoorAnimation = ({ onOpen }: DoorAnimationProps) => {
             transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
           >
             <div className="pl-1 md:pl-2 text-left">
-              <p className="font-display text-lg md:text-2xl font-light italic" style={{ color: "hsl(var(--wedding-warm))", paddingBottom: "150px" }}>
-              invitado!
+              <p className="font-display text-xl md:text-2xl font-light italic" style={{ color: "hsl(var(--wedding-warm))", paddingBottom: "150px" }}>
+
               </p>
             </div>
           </motion.div>
@@ -85,7 +85,7 @@ const DoorAnimation = ({ onOpen }: DoorAnimationProps) => {
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
               </motion.svg>
             </div>
-            <p className="wedding-text text-xs">Abrir invitación</p>
+            <p className="wedding-text text-s">Abrir invitación</p>
           </motion.button>
         </motion.div>
       ) : (

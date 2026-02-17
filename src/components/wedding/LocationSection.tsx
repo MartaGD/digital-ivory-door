@@ -12,19 +12,19 @@ const LocationSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
           <div className="flex flex-col items-center gap-2">
             <Calendar className="w-5 h-5" style={{ color: "hsl(var(--wedding-gold))" }} />
-            <p className="wedding-text text-xs">19 de Septiembre de 2026</p>
+            <p className="wedding-text text-s">19 de Septiembre de 2026</p>
           </div>
           <div className="flex flex-col items-center gap-2">
             <Clock className="w-5 h-5" style={{ color: "hsl(var(--wedding-gold))" }} />
-            <p className="wedding-text text-xs">17:00 horas</p>
+            <p className="wedding-text text-s">17:00 horas</p>
           </div>
           <div className="flex flex-col items-center gap-2">
             <MapPin className="w-5 h-5" style={{ color: "hsl(var(--wedding-gold))" }} />
-            <p className="wedding-text text-xs">Masia Castellarnau</p>
+            <p className="wedding-text text-s">Masia Castellarnau</p>
           </div>
         </div>
 
-        <p className="font-display text-lg md:text-xl font-light italic mb-8" style={{ color: "hsl(var(--muted-foreground))" }}>
+        <p className="font-display text-xl md:text-xl font-light italic mb-8" style={{ color: "hsl(var(--muted-foreground))" }}>
           Masia Castellarnau, Sabadell
         </p>
 
