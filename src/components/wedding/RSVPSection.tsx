@@ -2,7 +2,7 @@ import { useState } from "react";
 import ScrollReveal from "./ScrollReveal";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Frown } from "lucide-react";
 
 const dietaryOptions = [
   "Vegetariano",
@@ -11,7 +11,7 @@ const dietaryOptions = [
 ];
 
 // Reemplaza esto con la URL de tu Google Apps Script
-const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxSrIuBUNFX2N01z9TLt--YiipALv7zeK5Y29T_pousOerA63vkWQkkpIIhav6B0wGt/exec";
+const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzo4YFFrg3ZNi6bAOur16H7tqX_mJrSRyu6ySkoygs9D59rXRMZpXC5XTkDEDHWIcRg/exec";
 
 const RSVPSection = () => {
   const [nombre, setNombre] = useState("");
@@ -20,6 +20,7 @@ const RSVPSection = () => {
   const [otraDieta, setOtraDieta] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [rsvpError, setRsvpError] = useState("");
 
   const toggleDieta = (d: string) => {
     setDietas((prev) => {
@@ -49,6 +50,7 @@ const RSVPSection = () => {
     }
 
     setIsLoading(true);
+    setRsvpError("");
 
     try {
       const dietasText = dietas
@@ -68,7 +70,18 @@ const RSVPSection = () => {
 
       const result = await response.json();
       if (!result.success) {
-        toast.error(result.error || "Hubo un error. Intenta de nuevo.");
+        if (result.error === "DUPLICATED DATA") {
+          setSubmitted(true);
+          setRsvpError("Tus datos ya han sido guardados con anterioridad. Contacta con los anfitriones. Disculpa las molestias");
+          setIsLoading(false);
+          return;
+        }
+        // Solo mostrar toast si el error no es el mensaje personalizado
+        if (
+          result.error &&
+          result.error !== "DUPLICATED DATA") {
+          toast.error(result.error || "Hubo un error. Intenta de nuevo.");
+        }
         setIsLoading(false);
         return;
       }
@@ -97,7 +110,7 @@ const RSVPSection = () => {
       {!submitted ? (
         <form onSubmit={handleSubmit} className="wedding-card space-y-5 text-left">
           <div>
-            <label className="wedding-text text-xs block mb-2">Nombre</label>
+            <label className="wedding-text text-xs block mb-2">Nombre*</label>
             <input
               type="text"
               className="wedding-input"
@@ -108,7 +121,7 @@ const RSVPSection = () => {
           </div>
 
           <div>
-            <label className="wedding-text text-xs block mb-2">Apellido</label>
+            <label className="wedding-text text-xs block mb-2">Apellido*</label>
             <input
               type="text"
               className="wedding-input"
@@ -165,39 +178,58 @@ const RSVPSection = () => {
             )}
           </div>
 
-          <button type="submit" className="wedding-button w-full" disabled={isLoading}>
+          <button
+            type="submit"
+            className={`wedding-button w-full ${(!nombre.trim() || !apellido.trim()) && !isLoading ? 'bg-gray-300 text-gray-500 cursor-not-allowed border-none' : ''}`}
+            disabled={isLoading || !nombre.trim() || !apellido.trim()}
+          >
             {isLoading ? "Enviando..." : "Confirmar asistencia"}
           </button>
         </form>
       ) : (
-          <><div className="wedding-card text-center">
+        <div className="wedding-card text-center">
+          {rsvpError ? (
+            <>
+              <Frown className="w-8 h-8 mx-auto mb-4" style={{ color: "hsl(var(--wedding-gold))" }} />
+              <p className="font-display text-xl font-medium mb-2" style={{ color: "hsl(var(--foreground))" }}>
+                ¡Ups!
+              </p>
+              <p className="text-sm font-light" style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}>
+                {rsvpError}
+              </p>
+            </>
+          ) : (
+            <>
               <CheckCircle className="w-8 h-8 mx-auto mb-4" style={{ color: "hsl(var(--wedding-gold))" }} />
               <p className="wedding-heading mb-2">¡Gracias!</p>
               <div className="wedding-divider" />
               <p className="font-display text-xl font-light italic" style={{ color: "hsl(var(--muted-foreground))" }}>
                 {nombre} {apellido}, te esperamos con mucha ilusión.
               </p>
-            </div><motion.div
-              className="mt-12"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 2, duration: 0.8 }}
+            </>
+          )}
+          <motion.div
+            className="mt-12"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2, duration: 0.8 }}
+          >
+            <motion.svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="hsl(var(--wedding-gold))"
+              strokeWidth="1"
+              className="mx-auto"
+              animate={{ y: [0, 8, 0] }}
+              transition={{ repeat: Infinity, duration: 2 }}
             >
-                <motion.svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="hsl(var(--wedding-gold))"
-                  strokeWidth="1"
-                  className="mx-auto"
-                  animate={{ y: [0, 8, 0] }}
-                  transition={{ repeat: Infinity, duration: 2 }}
-                >
-                  <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
-                </motion.svg>
-              </motion.div></>
-        )}
+              <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+            </motion.svg>
+          </motion.div>
+        </div>
+      )}
         
       </ScrollReveal>
     </section>

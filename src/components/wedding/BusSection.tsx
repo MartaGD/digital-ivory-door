@@ -1,12 +1,12 @@
 import { useState } from "react";
 import ScrollReveal from "./ScrollReveal";
-import { Bus } from "lucide-react";
+import { Bus, Frown } from "lucide-react";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
 
 type BusOption = "ida" | "vuelta" | "ambos" | null;
 
-const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw5Q2060IK4Dr2vFMlWLRnXlW_V_FiLVFady4KK44eDv93yHQGJE64SdadSichVIyiB/exec";
+const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzo4YFFrg3ZNi6bAOur16H7tqX_mJrSRyu6ySkoygs9D59rXRMZpXC5XTkDEDHWIcRg/exec";
 
 const BusSection = () => {
   const [nombre, setNombre] = useState("");
@@ -14,6 +14,7 @@ const BusSection = () => {
   const [busOption, setBusOption] = useState<BusOption>(null);
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [busError, setBusError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,6 +24,7 @@ const BusSection = () => {
     }
 
     setIsLoading(true);
+    setBusError("");
 
     try {
       const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
@@ -37,7 +39,18 @@ const BusSection = () => {
 
       const result = await response.json();
       if (!result.success) {
-        toast.error(result.error || "Hubo un error. Intenta de nuevo.");
+        if (result.error === "DUPLICATED DATA") {
+          setSubmitted(true);
+          setBusError("Tus datos ya han sido guardados con anterioridad. Contacta con los anfitriones. Disculpa las molestias");
+          setIsLoading(false);
+          return;
+        }
+          // Solo mostrar toast si el error no es el mensaje personalizado
+        if (
+          result.error &&
+          result.error !== "DUPLICATED DATA") {
+          toast.error(result.error || "Hubo un error. Intenta de nuevo.");
+        }
         setIsLoading(false);
         return;
       }
@@ -72,7 +85,7 @@ const BusSection = () => {
                   className="block text-xs tracking-widest uppercase mb-2"
                   style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}
                 >
-                  Nombre
+                  Nombre*
                 </label>
                 <input
                   type="text"
@@ -87,7 +100,7 @@ const BusSection = () => {
                   className="block text-xs tracking-widest uppercase mb-2"
                   style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}
                 >
-                  Apellido
+                  Apellido*
                 </label>
                 <input
                   type="text"
@@ -104,7 +117,7 @@ const BusSection = () => {
                 className="block text-xs tracking-widest uppercase mb-3"
                 style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}
               >
-                ¿Qué trayecto necesitas?
+                ¿Qué trayecto necesitas?*
               </label>
               <div className="space-y-3">
                 {([
@@ -150,20 +163,33 @@ const BusSection = () => {
               </div>
             </div>
 
-            <button type="submit" className="wedding-button w-full" disabled={isLoading}>
+            <button
+              type="submit"
+              className={`wedding-button w-full ${(!nombre.trim() || !apellido.trim() || !busOption) && !isLoading ? 'bg-gray-300 text-gray-500 cursor-not-allowed border-none' : ''}`}
+              disabled={isLoading || !nombre.trim() || !apellido.trim() || !busOption}
+            >
               <Bus className="w-4 h-4 mr-2 inline" />
               {isLoading ? "Reservando..." : "Reservar plaza"}
             </button>
           </form>
         ) : (
           <><div className="wedding-card text-center">
-              <Bus className="w-8 h-8 mx-auto mb-4" style={{ color: "hsl(var(--wedding-gold))" }} />
+              {!busError && (
+              <><Bus className="w-8 h-8 mx-auto mb-4" style={{ color: "hsl(var(--wedding-gold))" }} />
               <p className="font-display text-xl font-medium mb-2" style={{ color: "hsl(var(--foreground))" }}>
-                ¡Plaza reservada!
-              </p>
-              <p className="text-sm font-light" style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}>
-                Hemos registrado tu reserva de bus. ¡Gracias!
-              </p>
+                  ¡Plaza reservada!
+                </p><p className="text-sm font-light" style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}>
+                    Hemos registrado tu reserva de bus. ¡Gracias!
+                  </p></>
+              )}
+              {busError && (
+                <><Frown className="w-8 h-8 mx-auto mb-4" style={{ color: "hsl(var(--wedding-gold))" }} />
+                <p className="font-display text-xl font-medium mb-2" style={{ color: "hsl(var(--foreground))" }}>
+                  ¡Ups!
+                </p><p className="text-sm font-light" style={{ fontFamily: "var(--font-body)", color: "hsl(var(--muted-foreground))" }}>
+                    {busError}
+                  </p></>
+              )}
             </div><motion.div
               className="mt-12"
               initial={{ opacity: 0 }}
